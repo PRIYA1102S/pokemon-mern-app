@@ -7,18 +7,15 @@ const connectDB = async () => {
         logger.debug(`MongoDB URI: ${process.env.MONGODB_URI}`);
 
         const connectionOptions = {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-
             // Connection pool settings
             maxPoolSize: process.env.NODE_ENV === 'production' ? 10 : 5, // Maximum number of connections
             minPoolSize: 1, // Minimum number of connections
             maxIdleTimeMS: 30000, // Close connections after 30 seconds of inactivity
 
             // Timeout settings
-            serverSelectionTimeoutMS: 5000, // How long to try selecting a server
+            serverSelectionTimeoutMS: 10000, // How long to try selecting a server
             socketTimeoutMS: 45000, // How long a send or receive on a socket can take
-            connectTimeoutMS: 10000, // How long to wait for a connection to be established
+            connectTimeoutMS: 15000, // How long to wait for a connection to be established
 
             // Buffering settings
             bufferMaxEntries: 0, // Disable mongoose buffering

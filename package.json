@@ -2,9 +2,9 @@
   "name": "pokemon-mern-app",
   "version": "1.0.0",
   "description": "A MERN stack application for searching and displaying Pokémon information using the PokeAPI.",
-  "main": "server/src/app.js",
+  "main": "start.js",
   "scripts": {
-    "start": "node server/src/app.js",
+    "start": "node start.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd server && npm run dev",
     "client": "cd client && npm start",

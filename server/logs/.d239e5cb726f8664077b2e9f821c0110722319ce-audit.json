@@ -9,6 +9,11 @@
             "date": 1750504421861,
             "name": "D:\\pokemon-mern-app\\server\\logs\\error-2025-06-21.log",
             "hash": "3c46af121167d00281ac0eb7eb9515b0c8dda18473e10825a054b1c14dea3aaf"
+        },
+        {
+            "date": 1750603523881,
+            "name": "D:\\pokemon-mern-app\\server\\logs\\error-2025-06-22.log",
+            "hash": "6b471fef0042e694b90820cfcdabe94ee618e0fcb6037ff57ab63fb09b2eaa9a"
         }
     ],
     "hashType": "sha256"
