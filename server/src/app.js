@@ -89,8 +89,18 @@ app.use('/api/pokemon', pokemonRoutes);
 if (NODE_ENV === 'production') {
     const path = require('path');
 
-    // Serve static files from the React app build directory
-    app.use(express.static(path.join(__dirname, '../../client/build')));
+    // Serve static files from the React app build directory with proper MIME types
+    app.use(express.static(path.join(__dirname, '../../client/build'), {
+        setHeaders: (res, path) => {
+            if (path.endsWith('.js')) {
+                res.setHeader('Content-Type', 'application/javascript');
+            } else if (path.endsWith('.css')) {
+                res.setHeader('Content-Type', 'text/css');
+            } else if (path.endsWith('.html')) {
+                res.setHeader('Content-Type', 'text/html');
+            }
+        }
+    }));
 
     // Handle React routing, return all requests to React app
     app.get('*', (req, res) => {
