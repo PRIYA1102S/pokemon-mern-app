@@ -85,14 +85,27 @@ app.get('/health', (req, res) => {
 // API routes
 app.use('/api/pokemon', pokemonRoutes);
 
-// 404 handler
-app.use('*', (req, res) => {
-    logger.warn(`404 - Route not found: ${req.method} ${req.originalUrl}`);
-    res.status(404).json({
-        error: 'Route not found',
-        message: `Cannot ${req.method} ${req.originalUrl}`,
+// Serve static files from React build in production
+if (NODE_ENV === 'production') {
+    const path = require('path');
+
+    // Serve static files from the React app build directory
+    app.use(express.static(path.join(__dirname, '../../client/build')));
+
+    // Handle React routing, return all requests to React app
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
     });
-});
+} else {
+    // 404 handler for development
+    app.use('*', (req, res) => {
+        logger.warn(`404 - Route not found: ${req.method} ${req.originalUrl}`);
+        res.status(404).json({
+            error: 'Route not found',
+            message: `Cannot ${req.method} ${req.originalUrl}`,
+        });
+    });
+}
 
 // Global error handler
 app.use((error, req, res, next) => {

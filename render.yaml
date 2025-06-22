@@ -1,0 +1,34 @@
+services:
+  # Web Service (Backend + Frontend)
+  - type: web
+    name: pokemon-mern-app
+    env: node
+    plan: free
+    buildCommand: npm run install-all && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: pokemon-db
+          property: connectionString
+      - key: PORT
+        value: 10000
+      - key: POKEAPI_BASE_URL
+        value: https://pokeapi.co/api/v2
+      - key: CORS_ORIGIN
+        value: https://pokemon-mern-app.onrender.com
+      - key: RATE_LIMIT_WINDOW_MS
+        value: 900000
+      - key: RATE_LIMIT_MAX_REQUESTS
+        value: 100
+      - key: SEARCH_RATE_LIMIT_MAX
+        value: 50
+      - key: LOG_LEVEL
+        value: info
+
+databases:
+  # MongoDB Database
+  - name: pokemon-db
+    plan: free
