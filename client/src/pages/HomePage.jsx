@@ -1,14 +1,14 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import DailyPokemonCard from '../components/DailyPokemonCard';
 import PokemonSearchBar from '../components/PokemonSearchBar';
 
 const HomePage = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSearch = (searchTerm) => {
         // Navigate to results page with search query
-        history.push('/results', { searchQuery: searchTerm });
+        navigate('/results', { state: { searchQuery: searchTerm } });
     };
 
     return (
