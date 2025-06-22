@@ -1,6 +1,81 @@
 # Pokemon MERN App - Deployment Guide
 
-## 🚀 Deployment Options
+## 🏠 Local Production Deployment
+
+### Quick Start (Recommended)
+
+#### Windows
+```bash
+# Run the automated deployment script
+deploy.bat
+```
+
+#### Linux/Mac
+```bash
+# Make the script executable (if needed)
+chmod +x deploy.sh
+
+# Run the automated deployment script
+./deploy.sh
+```
+
+### Manual Local Deployment
+
+1. **Install Dependencies**:
+   ```bash
+   # Install server dependencies
+   cd server
+   npm install
+
+   # Install client dependencies
+   cd ../client
+   npm install
+   ```
+
+2. **Build React Application**:
+   ```bash
+   # From client directory
+   npm run build
+   ```
+
+3. **Start Production Server**:
+   ```bash
+   # From server directory
+   npm run start:windows  # For Windows
+   npm start              # For Linux/Mac
+   ```
+
+4. **Access Application**: http://localhost:5000
+
+### Local Environment Setup
+
+Create a `.env` file in the `server` directory:
+```env
+# Database Configuration
+MONGODB_URI=mongodb://localhost:27017/pokemon-app
+DB_NAME=pokemon-app
+
+# Server Configuration
+PORT=5000
+NODE_ENV=production
+
+# API Configuration
+POKEAPI_BASE_URL=https://pokeapi.co/api/v2
+POKEAPI_TIMEOUT=10000
+
+# Security Configuration
+CORS_ORIGIN=http://localhost:5000
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+SEARCH_RATE_LIMIT_MAX=50
+
+# Logging Configuration
+LOG_LEVEL=info
+LOG_MAX_SIZE=20m
+LOG_MAX_FILES=14d
+```
+
+## 🚀 Cloud Deployment Options
 
 ### Option 1: Render (Recommended - Free)
 

@@ -7,26 +7,20 @@ const connectDB = async () => {
         logger.debug(`MongoDB URI: ${process.env.MONGODB_URI}`);
 
         const connectionOptions = {
+            // Use new URL parser
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+
             // Connection pool settings
             maxPoolSize: process.env.NODE_ENV === 'production' ? 10 : 5, // Maximum number of connections
-            minPoolSize: 1, // Minimum number of connections
-            maxIdleTimeMS: 30000, // Close connections after 30 seconds of inactivity
 
-            // Timeout settings
-            serverSelectionTimeoutMS: 10000, // How long to try selecting a server
-            socketTimeoutMS: 45000, // How long a send or receive on a socket can take
-            connectTimeoutMS: 15000, // How long to wait for a connection to be established
-
-            // Buffering settings
-            bufferMaxEntries: 0, // Disable mongoose buffering
-            bufferCommands: false, // Disable mongoose buffering
-
-            // Heartbeat settings
-            heartbeatFrequencyMS: 10000, // How often to check the server status
+            // Timeout settings (reduced for faster startup)
+            serverSelectionTimeoutMS: 5000, // How long to try selecting a server
+            socketTimeoutMS: 10000, // How long a send or receive on a socket can take
+            connectTimeoutMS: 5000, // How long to wait for a connection to be established
 
             // Retry settings
             retryWrites: true, // Retry writes on network errors
-            retryReads: true, // Retry reads on network errors
         };
 
         await mongoose.connect(process.env.MONGODB_URI, connectionOptions);

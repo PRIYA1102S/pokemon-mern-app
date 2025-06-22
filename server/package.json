@@ -4,7 +4,8 @@
   "description": "A MERN stack application for searching and displaying Pokémon information using the PokeAPI.",
   "main": "src/app.js",
   "scripts": {
-    "start": "NODE_OPTIONS='--openssl-legacy-provider' node src/app.js",
+    "start": "NODE_ENV=production NODE_OPTIONS='--openssl-legacy-provider' node src/app.js",
+    "start:windows": "set NODE_ENV=production && set NODE_OPTIONS=--openssl-legacy-provider && node src/app.js",
     "dev": "NODE_OPTIONS='--openssl-legacy-provider' nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

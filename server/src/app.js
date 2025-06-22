@@ -25,6 +25,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
+// Debug: Log environment variables
+console.log('NODE_ENV:', NODE_ENV);
+console.log('PORT:', PORT);
+
 // Trust proxy for accurate IP addresses behind reverse proxy
 app.set('trust proxy', 1);
 
@@ -85,37 +89,26 @@ app.get('/health', (req, res) => {
 // API routes
 app.use('/api/pokemon', pokemonRoutes);
 
-// Serve static files from React build in production
-if (NODE_ENV === 'production') {
-    const path = require('path');
+// Always serve static files from React build (for both development and production)
+const path = require('path');
 
-    // Serve static files from the React app build directory with proper MIME types
-    app.use(express.static(path.join(__dirname, '../../client/build'), {
-        setHeaders: (res, path) => {
-            if (path.endsWith('.js')) {
-                res.setHeader('Content-Type', 'application/javascript');
-            } else if (path.endsWith('.css')) {
-                res.setHeader('Content-Type', 'text/css');
-            } else if (path.endsWith('.html')) {
-                res.setHeader('Content-Type', 'text/html');
-            }
+// Serve static files from the React app build directory with proper MIME types
+app.use(express.static(path.join(__dirname, '../../client/build'), {
+    setHeaders: (res, path) => {
+        if (path.endsWith('.js')) {
+            res.setHeader('Content-Type', 'application/javascript');
+        } else if (path.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css');
+        } else if (path.endsWith('.html')) {
+            res.setHeader('Content-Type', 'text/html');
         }
-    }));
+    }
+}));
 
-    // Handle React routing, return all requests to React app
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
-    });
-} else {
-    // 404 handler for development
-    app.use('*', (req, res) => {
-        logger.warn(`404 - Route not found: ${req.method} ${req.originalUrl}`);
-        res.status(404).json({
-            error: 'Route not found',
-            message: `Cannot ${req.method} ${req.originalUrl}`,
-        });
-    });
-}
+// Handle React routing, return all requests to React app
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
+});
 
 // Global error handler
 app.use((error, req, res, next) => {
