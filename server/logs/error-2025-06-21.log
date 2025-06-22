@@ -1,0 +1,2 @@
+{"level":"error","message":"Error in species search: No Pokemon found matching your search","timestamp":"2025-06-21 17:27:03:273"}
+{"error":"Error: No Pokemon found matching your search\n    at D:\\pokemon-mern-app\\server\\src\\controllers\\pokemonController.js:152:27\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","ip":"127.0.0.1","level":"error","message":"Global error handler: No Pokemon found matching your search","method":"GET","timestamp":"2025-06-21 17:27:03:273","url":"/api/pokemon/search/balbasaur"}

@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "D:\\pokemon-mern-app\\server\\logs\\.d5d7bf1cbb8b47402bf9414b545cf0394824b4cd-audit.json",
+    "files": [
+        {
+            "date": 1750504421867,
+            "name": "D:\\pokemon-mern-app\\server\\logs\\combined-2025-06-21.log",
+            "hash": "a56365426c5bc7c0822965ef4a0b5a7e764579b407320ae2d9a2e23ca967e0ab"
+        },
+        {
+            "date": 1750563886546,
+            "name": "D:\\pokemon-mern-app\\server\\logs\\combined-2025-06-22.log",
+            "hash": "3e9dc45199a2d90d9981ac53cd24717e8686bf5cacfb7914214d80fe5aca6655"
+        }
+    ],
+    "hashType": "sha256"
+}
