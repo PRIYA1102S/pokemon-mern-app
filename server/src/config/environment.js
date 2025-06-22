@@ -2,7 +2,7 @@ const logger = require('./logger');
 
 // Validate required environment variables
 const requiredEnvVars = [
-    'MONGO_URI',
+    'MONGODB_URI',
     'PORT'
 ];
 
@@ -81,7 +81,7 @@ const getConfig = () => {
         ...config[env],
         env,
         port: parseInt(process.env.PORT) || 5000,
-        mongoUri: process.env.MONGO_URI,
+        mongoUri: process.env.MONGODB_URI,
         frontendUrl: process.env.FRONTEND_URL,
         pokemonApiBaseUrl: process.env.POKEMON_API_BASE_URL || 'https://pokeapi.co/api/v2'
     };

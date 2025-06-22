@@ -4,7 +4,7 @@ const logger = require('./logger');
 const connectDB = async () => {
     try {
         logger.info('Attempting to connect to MongoDB...');
-        logger.debug(`MongoDB URI: ${process.env.MONGO_URI}`);
+        logger.debug(`MongoDB URI: ${process.env.MONGODB_URI}`);
 
         const connectionOptions = {
             useNewUrlParser: true,
@@ -32,7 +32,7 @@ const connectDB = async () => {
             retryReads: true, // Retry reads on network errors
         };
 
-        await mongoose.connect(process.env.MONGO_URI, connectionOptions);
+        await mongoose.connect(process.env.MONGODB_URI, connectionOptions);
 
         logger.info('MongoDB connected successfully');
         logger.info(`Connected to database: ${mongoose.connection.name}`);
