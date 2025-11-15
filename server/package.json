@@ -4,11 +4,8 @@
   "description": "A MERN stack application for searching and displaying Pokémon information using the PokeAPI.",
   "main": "src/app.js",
   "scripts": {
-    "start": "NODE_ENV=production node src/app.js",
-    "start:windows": "set NODE_ENV=production && set NODE_OPTIONS=--openssl-legacy-provider && node src/app.js",
-    "start:linux": "NODE_ENV=production NODE_OPTIONS='--openssl-legacy-provider' node src/app.js",
-    "dev": "NODE_OPTIONS='--openssl-legacy-provider' nodemon src/app.js",
-    "dev:windows": "set NODE_OPTIONS=--openssl-legacy-provider && nodemon src/app.js",
+  "dev": "cross-env nodemon src/app.js",
+    "start": "cross-env NODE_ENV=production node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -32,6 +29,7 @@
     "xss-clean": "^0.1.4"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "nodemon": "^2.0.22"
   },
   "author": "",
