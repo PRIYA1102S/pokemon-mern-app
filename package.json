@@ -16,7 +16,7 @@
     "install-client": "cd client && npm install",
     "install-all": "npm run install-server && npm run install-client",
     "heroku-postbuild": "npm run install-all && npm run build",
-    "render-postbuild": "npm run install-all && npm run build"
+    "render-build": "npm run install-all && npm run build"
   },
   "engines": {
     "node": ">=14.0.0",
