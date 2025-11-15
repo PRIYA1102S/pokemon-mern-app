@@ -19,9 +19,10 @@
     "render-build": "npm run install-all && npm run build"
   },
   "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=6.0.0"
-  },
+  "node": "18.x",
+  "npm": "9.x"
+},
+
   "dependencies": {
     "concurrently": "^7.6.0"
   },
